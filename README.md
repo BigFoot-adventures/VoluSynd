@@ -1,11 +1,8 @@
 # VoluSynd
 
-VoluSynd is a practice project to create a volunteer management system with a working CRUD API.
+VoluSynd is a practice project to create a volunteer management system with a CRUD API.
 
 ### Features
- - sort through volunteers
- - jwt authentication
- - role-specific access to certain pages
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
