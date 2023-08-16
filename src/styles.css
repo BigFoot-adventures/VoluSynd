@@ -4,7 +4,12 @@
 @tailwind utilities;
 
 @layer components {
-  html {
+  
+  .bg-main {
+    @apply bg-gradient-to-tr from-slate-50 from-50% to-slate-100 min-h-screen;
+  }
+
+  .bg-dark {
     @apply bg-gradient-to-tr from-slate-900 from-50% to-slate-800 min-h-screen;
   }
 }
