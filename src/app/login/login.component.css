@@ -1,0 +1,9 @@
+@tailwind components;
+@layer components {
+    input:invalid {
+        border: 2px solid red;
+    }
+    /*input:focus{
+        outline: 2px solid white;
+    }*/
+}
