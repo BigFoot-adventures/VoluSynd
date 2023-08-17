@@ -8,7 +8,7 @@
             <a class="m-3 p-1" routerLink="/">Home</a>
             <a class="m-3 p-1" routerLink="/search">Search</a>
             <div class="px-4 py-1 my-3 sm:border-l border-slate-400" *ngIf="loggedIn">
-                <a class="p-1" (click)="loggedIn = false">Logout</a>
+                <a class="p-1" routerLink="/login" (click)="logout()">Logout</a>
             </div>
     </div>
 </nav>
