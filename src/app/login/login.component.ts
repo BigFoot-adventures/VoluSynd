@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private userSvc: UserService) { }
+  constructor(private userSvc: UserService, private router: Router) { }
 
   login() {
     let userName = this.fg.get('userName')?.value;
@@ -25,6 +26,8 @@ export class LoginComponent {
           next: (token) => {
             localStorage.setItem('token', JSON.stringify(token));
             this.userSvc.setCurUser(token);
+            this.userSvc.loggedin.emit(true);
+            this.router.navigate(['/']);
           },
           error: (err) => {
             console.log(err);
