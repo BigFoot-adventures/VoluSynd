@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { token } from '../models/token';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,15 @@ export class UserService {
   constructor(private client:HttpClient, public router: Router) {
     let tokenStr = localStorage.getItem('token');
     if (tokenStr) {
-      this.userToken = JSON.parse(tokenStr);
+      this.userToken = tokenStr?JSON.parse(tokenStr):null;
+      if (this.userToken) {
+        let decoded = jwt_decode(this.userToken.token) as any;
+        this.userObj = decoded.data;
+      }
+      this.loggedin.emit(true);
     } else {
       this.userToken = undefined;
+      this.loggedin.emit(false);
     }
   }
 
@@ -29,6 +36,7 @@ export class UserService {
 
   logout() {
     this.userToken = undefined;
+    this.loggedin.emit(false);
     localStorage.removeItem('token');
   }
 
