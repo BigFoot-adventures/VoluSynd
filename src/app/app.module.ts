@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SearchComponent } from './search/search.component';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

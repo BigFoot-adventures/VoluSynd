@@ -14,11 +14,18 @@ const loggedIn: CanActivateFn = () => {
 
 const admin: CanActivateFn = () => {
   let user = inject(UserService);
-  if (user.userObj.role === 'admin') {
-    return true;
-  } else {
+  if (user.userToken === undefined) {
     user.router.navigate(['/login']);
     return false;
+  } else {
+    console.log(user.userObj.role);
+    
+    if (user.userObj.role === 'admin') {
+      return true;
+    } else {
+      user.router.navigate(['/unauthorized']);
+      return false;
+    }
   }
 }
 

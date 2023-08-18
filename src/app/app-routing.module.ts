@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent} from './login/login.component';
 import { SearchComponent} from './search/search.component'
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { loggedIn, admin } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
     component: SearchComponent,
     canActivate: [admin],
   },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent,
+  }
 ];
 
 @NgModule({
