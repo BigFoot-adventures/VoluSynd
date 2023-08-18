@@ -11,7 +11,6 @@ export class HomeComponent {
 
   constructor(private userSvc: UserService) {
     this.loggedIn = userSvc.userToken ? true : false;
-    console.log(this.loggedIn);
   }
 
 }
