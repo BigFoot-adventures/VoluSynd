@@ -12,11 +12,16 @@ export class NavbarComponent {
   toolTip = false;
 
   constructor(private userSvc: UserService) { }
-
+  
   ngOnInit() {
     this.userSvc.loggedin.subscribe((val) => {
       this.loggedIn = val;
     });
+    this.loggedIn = this.userSvc.userToken ? true : false;
+  }
+
+  logout() {
+    this.userSvc.logout();
   }
 
 }
