@@ -17,9 +17,7 @@ const admin: CanActivateFn = () => {
   if (user.userToken === undefined) {
     user.router.navigate(['/login']);
     return false;
-  } else {
-    console.log(user.userObj.role);
-    
+  } else {    
     if (user.userObj.role === 'admin') {
       return true;
     } else {
