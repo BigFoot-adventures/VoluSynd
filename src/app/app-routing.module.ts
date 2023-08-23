@@ -18,13 +18,23 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'search',
-    component: SearchComponent,
+    path: 'admin',
+    component: HomeComponent,
     canActivate: [admin],
+    children: [
+      {
+        path: 'search',
+        component: SearchComponent,
+      }
+    ]
   },
   {
     path: 'unauthorized',
     component: UnauthorizedComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/login',
   }
 ];
 

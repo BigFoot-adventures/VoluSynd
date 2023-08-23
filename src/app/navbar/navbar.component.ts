@@ -9,14 +9,21 @@ import { UserService } from '../services/user.service';
 export class NavbarComponent {
 
   loggedIn = false;
+  admin = false;
   toolTip = false;
 
   constructor(private userSvc: UserService) { }
-
+  
   ngOnInit() {
     this.userSvc.loggedin.subscribe((val) => {
       this.loggedIn = val;
     });
+    this.loggedIn = this.userSvc.userToken ? true : false;
+    this.admin = this.userSvc.userObj?.role === 'admin';
+  }
+
+  logout() {
+    this.userSvc.logout();
   }
 
 }

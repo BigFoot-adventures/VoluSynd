@@ -5,8 +5,7 @@
                 <img (mouseover)="toolTip=true" (mouseout)="toolTip=false" class="h-8" src="../../assets/logo.png" alt="logo">
                 <div *ngIf="toolTip" class="absolute text-[0.7rem] transition ease-in duration-1000 rounded-sm bg-slate-50 text-black font-normal px-1">icon made by iconixarPro from <a>www.flaticon.com</a></div>
             </a>
-            <a class="m-3 p-1" routerLink="/">Home</a>
-            <a class="m-3 p-1" routerLink="/search">Search</a>
+            <a class="m-3 p-1" routerLink="/admin" *ngIf="admin">Home</a>
             <div class="px-4 py-1 my-3 sm:border-l border-slate-400" *ngIf="loggedIn">
                 <a class="p-1" routerLink="/login" (click)="logout()">Logout</a>
             </div>

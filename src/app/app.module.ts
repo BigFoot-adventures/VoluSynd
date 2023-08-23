@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     HomeComponent,
     LoginComponent,
     SearchComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
