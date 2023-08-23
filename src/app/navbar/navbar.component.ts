@@ -17,6 +17,7 @@ export class NavbarComponent {
   ngOnInit() {
     this.userSvc.loggedin.subscribe((val) => {
       this.loggedIn = val;
+      this.admin = this.userSvc.userObj?.role === 'admin';
     });
     this.loggedIn = this.userSvc.userToken ? true : false;
     this.admin = this.userSvc.userObj?.role === 'admin';

@@ -26,7 +26,6 @@ export class LoginComponent {
           next: (token) => {
             localStorage.setItem('token', JSON.stringify(token));
             this.userSvc.setCurUser(token);
-            this.userSvc.loggedin.emit(true);
             this.router.navigate(['/']);
           },
           error: (err) => {

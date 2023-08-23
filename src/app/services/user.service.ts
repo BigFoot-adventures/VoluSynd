@@ -18,12 +18,10 @@ export class UserService {
   constructor(private client:HttpClient, public router: Router) {
     let tokenStr = localStorage.getItem('token');
     if (tokenStr) {
-      this.userToken = tokenStr?JSON.parse(tokenStr):null;
+      this.userToken = JSON.parse(tokenStr);
       if (this.userToken) {
-        let decoded = jwt_decode(this.userToken.token) as any;
-        this.userObj = decoded.data;
+        this.setCurUser(this.userToken);
       }
-      this.loggedin.emit(true);
     } else {
       this.userToken = undefined;
       this.loggedin.emit(false);
@@ -36,6 +34,7 @@ export class UserService {
 
   logout() {
     this.userToken = undefined;
+    this.userObj = undefined;
     this.loggedin.emit(false);
     localStorage.removeItem('token');
   }
@@ -46,6 +45,9 @@ export class UserService {
 
   setCurUser(token: token) {
     this.userToken = token;
+    let decoded = jwt_decode(this.userToken.token) as any;
+    this.userObj = decoded.data;
+    this.loggedin.emit(true);
   }
 
 
