@@ -8,9 +8,11 @@ import { UserService } from '../services/user.service';
 })
 export class HomeComponent {
   loggedIn = false;
+  admin = false;
 
   constructor(private userSvc: UserService) {
     this.loggedIn = userSvc.userToken ? true : false;
+    this.admin = userSvc.userObj?.role === 'admin';
   }
 
 }
