@@ -20,7 +20,7 @@ export class UserService {
     if (tokenStr) {
       this.userToken = JSON.parse(tokenStr);
       if (this.userToken) {
-        this.setCurUser(this.userToken);
+        this.renew();
       }
     } else {
       this.userToken = undefined;
@@ -29,7 +29,21 @@ export class UserService {
   }
 
   login(userName: string, password: string) { 
-    return this.client.post<token>(`${environment.serverEndpoint}/users/login`, { userName: userName, password: password })
+    return this.client.post<token>(`${environment.url}/users/login`, { userName: userName, password: password })
+  }
+
+  renew() {
+    // not checking this.userToken for undefined because it should be checked before calling this function
+    this.client.get<token>(`${environment.url}/users/refresh`, { headers: { 'Authorization': `Bearer ${this.userToken!.token}` } }).subscribe(
+      (token) => {
+        this.userToken = token;
+        localStorage.setItem('token', JSON.stringify(this.userToken));
+        this.setCurUser(this.userToken);
+      },
+      (err) => {
+        console.log(err);
+        this.logout();
+    });
   }
 
   logout() {
@@ -40,7 +54,7 @@ export class UserService {
   }
 
   getCurUser() {
-    return this.client.get<object>(`${environment.serverEndpoint}/users/${this.userToken}`, { headers: { 'Authorization': `Bearer ${this.userToken}` } });
+    return this.client.get<object>(`${environment.url}/users/${this.userToken}`, { headers: { 'Authorization': `Bearer ${this.userToken}` } });
   }
 
   setCurUser(token: token) {
